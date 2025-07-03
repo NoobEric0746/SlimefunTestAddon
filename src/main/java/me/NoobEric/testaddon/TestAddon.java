@@ -1,7 +1,14 @@
 package me.NoobEric.testaddon;
 
+import io.github.thebusybiscuit.slimefun4.api.researches.Research;
 import me.NoobEric.testaddon.block.FireCake;
+import me.NoobEric.testaddon.block.SweetCake;
+import me.NoobEric.testaddon.event.MyListener;
 import me.NoobEric.testaddon.item.GoUpScroll;
+import me.NoobEric.testaddon.item.HackCore;
+import me.NoobEric.testaddon.item.MinusSoup;
+import me.NoobEric.testaddon.weapon.BouncySword;
+import me.NoobEric.testaddon.weapon.StickySword;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
@@ -27,13 +34,20 @@ public class TestAddon extends JavaPlugin implements SlimefunAddon {
             // 你可以在这里添加自动更新功能
         }
 
-        /*
-         * 1. 创建分类
-         * 分类的显示物品将使用以下物品
-         */
         FireCake.reg();
+        SweetCake.reg();
         GoUpScroll.reg();
+        HackCore.reg();
+        StickySword.reg();
+        BouncySword.reg();
+        MinusSoup.reg();
 
+        getServer().getPluginManager().registerEvents(new MyListener(),this);
+
+        Researches.stickySwordResearch.register();
+        Researches.bouncySwordResearch.register();
+        Researches.cakeResearch.register();
+        Researches.hackCoreResearch.register();
     }
 
     @Override

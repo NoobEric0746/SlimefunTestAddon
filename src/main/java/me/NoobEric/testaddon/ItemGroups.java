@@ -7,7 +7,7 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 
 public class ItemGroups {
-    static ItemStack group1Item = new CustomItemStack(Material.DIAMOND, "&4附属分类");
+    static ItemStack group1Item = new CustomItemStack(Material.DIAMOND, "Noob's utils");
 
     // 给你的分类提供一个独一无二的ID
     static NamespacedKey Group1Id = new NamespacedKey(TestAddon.instance, "NoobUtils");
