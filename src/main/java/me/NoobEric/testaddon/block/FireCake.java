@@ -9,10 +9,13 @@ import io.github.thebusybiscuit.slimefun4.core.handlers.BlockUseHandler;
 import me.NoobEric.testaddon.ItemGroups;
 import me.NoobEric.testaddon.Researches;
 import me.NoobEric.testaddon.TestAddon;
+import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Particle;
+import org.bukkit.block.Block;
+import org.bukkit.block.data.type.Cake;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
@@ -69,5 +72,11 @@ public class FireCake extends SlimefunItem {
         player.sendMessage(ChatColor.GOLD+"锟斤拷烫烫烫");
         Location loc = event.getClickedBlock().get().getLocation();
         player.getWorld().spawnParticle(Particle.FLAME,loc,10,0.5,0.5,0.5);
+//        Block block = loc.getBlock();
+//        Cake cakeData = (Cake) block.getBlockData();
+//        if(cakeData.getBites()==6){
+//
+//        }
+        BlockStorage.clearBlockInfo(loc);
     }
 }
