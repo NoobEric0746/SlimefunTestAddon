@@ -40,7 +40,7 @@ public class MinusSoup extends SlimefunItem {
     private void OnItemConsumed(PlayerItemConsumeEvent event, Player player, ItemStack itemStack) {
         event.setCancelled(true);
         itemStack.setType(Material.BOWL);
-        itemStack.setAmount(0);
+        player.getInventory().setItem(event.getHand(), itemStack);
         player.setFoodLevel(Math.max(player.getFoodLevel() - 6,0));
     }
 
