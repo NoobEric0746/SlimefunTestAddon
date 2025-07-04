@@ -25,7 +25,7 @@ public class TetanusSword extends SlimefunItem {
     }
 
     public static void reg(){
-        SlimefunItemStack itemStack = new SlimefunItemStack("TETANUS_SWORD", Material.NETHERITE_SWORD,"破伤风之剑","","破伤风","§7test");
+        SlimefunItemStack itemStack = new SlimefunItemStack("TETANUS_SWORD", Material.NETHERITE_SWORD,"破伤风之剑","","破伤风","§7凋零+缓慢");
         ItemMeta meta = itemStack.getItemMeta();
         meta.addEnchant(Enchantment.LUCK, 1, true);
 
