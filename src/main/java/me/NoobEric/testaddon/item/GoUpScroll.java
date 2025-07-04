@@ -7,12 +7,18 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockUseHandler;
 import io.github.thebusybiscuit.slimefun4.core.handlers.ItemUseHandler;
+import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
+import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import me.NoobEric.testaddon.ItemGroups;
 import me.NoobEric.testaddon.TestAddon;
 import me.NoobEric.testaddon.block.FireCake;
 import org.bukkit.*;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.EquipmentSlot;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 public class GoUpScroll extends SlimefunItem {
     public GoUpScroll(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
@@ -20,11 +26,16 @@ public class GoUpScroll extends SlimefunItem {
     }
 
     public static void reg(){
-        SlimefunItemStack itemStack = new SlimefunItemStack("GO_UP_SCROLL", Material.PAPER,"Go Up","","weee~");
+        SlimefunItemStack itemStack = new SlimefunItemStack("GO_UP_SCROLL", Material.PAPER,"卷轴:通天术","","传送到头顶的方块上");
+        ItemMeta meta = itemStack.getItemMeta();
+        meta.addEnchant(Enchantment.LUCK, 1, true);
+        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        itemStack.setItemMeta(meta);
+        itemStack.setAmount(4);
 
-        ItemStack[] recipe = { new ItemStack(Material.PAPER), null, new ItemStack(Material.PAPER),
-                null, new ItemStack(Material.DIAMOND), null,
-                new ItemStack(Material.PAPER), null, new ItemStack(Material.PAPER) };
+        ItemStack[] recipe = { null, new ItemStack(Material.PAPER), null,
+                new ItemStack(Material.PAPER), SlimefunItems.ENDER_RUNE, new ItemStack(Material.PAPER),
+                null , new ItemStack(Material.PAPER), null };
 
         GoUpScroll scroll = new GoUpScroll(ItemGroups.Group1,itemStack,RecipeType.ENHANCED_CRAFTING_TABLE,recipe);
         scroll.register(TestAddon.instance);
@@ -36,6 +47,8 @@ public class GoUpScroll extends SlimefunItem {
         addItemHandler(itemUseHandler);
     }
     private void OnItemUseRightClick(PlayerRightClickEvent event) {
+        event.cancel();
+        if(event.getHand() == EquipmentSlot.OFF_HAND){return;}
         Player player = event.getPlayer();
         boolean flag = false;
         Location pLoc = player.getLocation();
@@ -44,7 +57,9 @@ public class GoUpScroll extends SlimefunItem {
             particle(i*2,loc, player.getWorld());
             if(isSafe(loc)){
                 if(flag){
-                    player.teleport(loc);
+                    Slimefun.runSync(() -> player.teleport(loc), 1);
+
+                    event.getItem().setAmount(event.getItem().getAmount()-1);
                     return;
                 }
             }
@@ -58,7 +73,7 @@ public class GoUpScroll extends SlimefunItem {
 //            }
         }
         if(flag==false){
-            player.sendMessage(ChatColor.RED+"No Block");
+            player.sendMessage(ChatColor.RED+"128格内没有方块");
         }
     }
     private boolean isSafe(Location loc){

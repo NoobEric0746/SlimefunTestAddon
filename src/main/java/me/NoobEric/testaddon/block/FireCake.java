@@ -39,9 +39,9 @@ public class FireCake extends SlimefunItem {
          * 它代表了一个3x3的有序合成配方。
          * 该配方所需的机器将在后面通过RecipeType指定。
          */
-        ItemStack[] recipe = { new ItemStack(Material.EMERALD), null, new ItemStack(Material.EMERALD),
-                            null, new ItemStack(Material.DIAMOND), null,
-                            new ItemStack(Material.EMERALD), null, new ItemStack(Material.EMERALD) };
+        ItemStack[] recipe = {null , new ItemStack(Material.BLAZE_POWDER), null,
+                new ItemStack(Material.BLAZE_POWDER), new ItemStack(Material.CAKE), new ItemStack(Material.BLAZE_POWDER),
+                        null, new ItemStack(Material.BLAZE_POWDER), null };
 
         /*
          * 4. 注册物品
@@ -53,7 +53,7 @@ public class FireCake extends SlimefunItem {
 //        SlimefunItem item = new SlimefunItem(itemGroup, slimefunItem, RecipeType.ENHANCED_CRAFTING_TABLE, recipe);
 //        item.register(this);
         SlimefunItemStack itemStack = new SlimefunItemStack("FIRE_CAKE", Material.CAKE,"烈焰蛋糕","",ChatColor.GOLD + "烫!");
-        FireCake cake = new FireCake(ItemGroups.Group1,itemStack,RecipeType.ENHANCED_CRAFTING_TABLE,recipe);
+        FireCake cake = new FireCake(ItemGroups.Group1,itemStack,RecipeType.MAGIC_WORKBENCH,recipe);
         cake.register(TestAddon.instance);
         Researches.cakeResearch.addItems(cake);
     }

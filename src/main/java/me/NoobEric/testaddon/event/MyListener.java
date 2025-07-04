@@ -14,6 +14,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.inventory.EntityEquipment;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 
 import java.util.Random;
@@ -28,8 +30,11 @@ public class MyListener implements Listener {
             ItemStack item = player.getInventory().getItemInMainHand();
             SlimefunItem sfItem = SlimefunItem.getByItem(item);
             SlimefunItem sfItemOffhand = SlimefunItem.getByItem(player.getInventory().getItemInOffHand());
-            if(sfItem != null && sfItem.getId().equals("STICKY_SWORD")){
-                if(!sfItem.canUse(player,false))return;
+            if(sfItem==null)return;
+            if(!sfItem.canUse(player,false))return;
+
+            //粘液剑
+            if(sfItem.getId().equals("STICKY_SWORD")){
                 double tmp=0;
                 if(sfItemOffhand.getId().equals("HACK_CORE")){
                     tmp=0.5;
@@ -50,8 +55,9 @@ public class MyListener implements Listener {
                 }
             }
 
-            if(sfItem != null && sfItem.getId().equals("BOUNCY_SWORD")){
-                if(!sfItem.canUse(player,false))return;
+            //弹性剑
+            if(sfItem.getId().equals("BOUNCY_SWORD")){
+                if(!(entity instanceof Player)) return;
                 double tmp=0;
                 if(sfItemOffhand.getId().equals("HACK_CORE")){
                     tmp=0.5;
@@ -69,8 +75,17 @@ public class MyListener implements Listener {
                 entity.getWorld().spawnParticle(Particle.SLIME,entity.getLocation(),40,0.5,0.5,0.5);
             }
 
+            //破伤风之剑
+            if(sfItem.getId().equals("TETANUS_SWORD")){
+                entity.addPotionEffect(new PotionEffect(PotionEffectType.WITHER,6*20,3));
+                entity.addPotionEffect(new PotionEffect(PotionEffectType.SLOW,6*20,3));
+                entity.getWorld().spawnParticle(Particle.SQUID_INK,entity.getLocation(),20,0.5,0.5,0.5);
+                player.sendMessage("test");
+            }
+
         }
     }
+
     private void KnockBack(Player damager,LivingEntity victim,double strength){
 
         // 计算基础方向

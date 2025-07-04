@@ -19,13 +19,13 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.UUID;
 
-public class BouncySword extends SlimefunItem {
-    public BouncySword(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
+public class TetanusSword extends SlimefunItem {
+    public TetanusSword(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
     }
 
     public static void reg(){
-        SlimefunItemStack itemStack = new SlimefunItemStack("BOUNCY_SWORD", Material.DIAMOND_SWORD,"弹性剑","","请对手为你跳一段脱衣舞吧","§730%概率击退敌人并掉落其胸甲");
+        SlimefunItemStack itemStack = new SlimefunItemStack("TETANUS_SWORD", Material.NETHERITE_SWORD,"破伤风之剑","","破伤风","§7test");
         ItemMeta meta = itemStack.getItemMeta();
         meta.addEnchant(Enchantment.LUCK, 1, true);
 
@@ -37,28 +37,27 @@ public class BouncySword extends SlimefunItem {
 //                EquipmentSlot.HAND
 //        );
 //        meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED,speedModifier);
-//
-        AttributeModifier damageModifier = new AttributeModifier(
-                UUID.randomUUID(),
-                "DAMAGE_MODIFIER",
-                4.0,
-                AttributeModifier.Operation.ADD_NUMBER,
-                EquipmentSlot.HAND
-        );
-        meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE,damageModifier);
+
+//        AttributeModifier damageModifier = new AttributeModifier(
+//                UUID.randomUUID(),
+//                "DAMAGE_MODIFIER",
+//                4.0,
+//                AttributeModifier.Operation.ADD_NUMBER,
+//                EquipmentSlot.HAND
+//        );
+//        meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE,damageModifier);
 
 //        meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
         meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 
         itemStack.setItemMeta(meta);
+        ItemStack[] recipe = { new ItemStack(Material.OXIDIZED_COPPER), SlimefunItems.ENCHANTMENT_RUNE, new ItemStack(Material.OXIDIZED_COPPER),
+                SlimefunItems.NECROTIC_SKULL, new ItemStack(Material.NETHERITE_SWORD), SlimefunItems.NECROTIC_SKULL,
+                new ItemStack(Material.EXPOSED_COPPER), SlimefunItems.ENCHANTMENT_RUNE, new ItemStack(Material.EXPOSED_COPPER) };
 
-        ItemStack[] recipe = { new ItemStack(Material.SLIME_BLOCK), SlimefunItems.ENCHANTMENT_RUNE, new ItemStack(Material.SLIME_BLOCK),
-                new ItemStack(Material.SLIME_BALL), new ItemStack(Material.DIAMOND_SWORD), new ItemStack(Material.SLIME_BALL),
-                new ItemStack(Material.SLIME_BLOCK), SlimefunItems.ENCHANTMENT_RUNE, new ItemStack(Material.SLIME_BLOCK) };
-
-        BouncySword sword= new BouncySword(ItemGroups.Group1,itemStack,RecipeType.MAGIC_WORKBENCH,recipe);
+        TetanusSword sword= new TetanusSword(ItemGroups.Group1,itemStack,RecipeType.ANCIENT_ALTAR,recipe);
         sword.register(TestAddon.instance);
-        Researches.bouncySwordResearch.addItems(sword);
+        Researches.tetanusSwordResearch.addItems(sword);
     }
 
     @Override

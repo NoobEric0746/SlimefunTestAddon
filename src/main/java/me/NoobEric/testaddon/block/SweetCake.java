@@ -6,6 +6,7 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockUseHandler;
+import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import me.NoobEric.testaddon.ItemGroups;
 import me.NoobEric.testaddon.Researches;
 import me.NoobEric.testaddon.TestAddon;
@@ -29,12 +30,12 @@ public class SweetCake extends SlimefunItem {
     }
 
     public static void reg(){
-        ItemStack[] recipe = { new ItemStack(Material.EMERALD), null, new ItemStack(Material.EMERALD),
-                            null, new ItemStack(Material.DIAMOND), null,
-                            new ItemStack(Material.EMERALD), null, new ItemStack(Material.EMERALD) };
+        ItemStack[] recipe = {null , new ItemStack(Material.SUGAR), null,
+                SlimefunItems.TINY_URANIUM, new ItemStack(Material.CAKE), SlimefunItems.TINY_URANIUM,
+                null, new ItemStack(Material.SUGAR), null };
 
         SlimefunItemStack itemStack = new SlimefunItemStack("SWEET_CAKE", Material.CAKE,"美好祭坛","","看似是宴席，实则是饲料","§7一口回满饱食度与饱腹度","§7那么代价是什么呢?");
-        SweetCake cake = new SweetCake(ItemGroups.Group1,itemStack,RecipeType.ENHANCED_CRAFTING_TABLE,recipe);
+        SweetCake cake = new SweetCake(ItemGroups.Group1,itemStack,RecipeType.MAGIC_WORKBENCH,recipe);
         cake.register(TestAddon.instance);
         Researches.cakeResearch.addItems(cake);
     }

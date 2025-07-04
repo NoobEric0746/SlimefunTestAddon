@@ -23,9 +23,9 @@ public class MinusSoup extends SlimefunItem {
     public static void reg(){
         SlimefunItemStack itemStack = new SlimefunItemStack("MINUS_SOUP", Material.BEETROOT_SOUP,"减法汤","","健胃消食");
 
-        ItemStack[] recipe = { new ItemStack(Material.PAPER), null, new ItemStack(Material.PAPER),
-                null, new ItemStack(Material.DIAMOND), null,
-                new ItemStack(Material.PAPER), null, new ItemStack(Material.PAPER) };
+        ItemStack[] recipe = { null , new ItemStack(Material.FERMENTED_SPIDER_EYE) , null,
+                null, new ItemStack(Material.BEETROOT_SOUP), null,
+                null, new ItemStack(Material.ROTTEN_FLESH), null };
 
         MinusSoup soup = new MinusSoup(ItemGroups.Group1,itemStack,RecipeType.ENHANCED_CRAFTING_TABLE,recipe);
         soup.register(TestAddon.instance);

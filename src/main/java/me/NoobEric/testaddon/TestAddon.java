@@ -1,14 +1,19 @@
 package me.NoobEric.testaddon;
 
 import io.github.thebusybiscuit.slimefun4.api.researches.Research;
+import io.github.thebusybiscuit.slimefun4.implementation.listeners.GrapplingHookListener;
 import me.NoobEric.testaddon.block.FireCake;
 import me.NoobEric.testaddon.block.SweetCake;
 import me.NoobEric.testaddon.event.MyListener;
+import me.NoobEric.testaddon.event.ThrowableSwordListener;
 import me.NoobEric.testaddon.item.GoUpScroll;
 import me.NoobEric.testaddon.item.HackCore;
+import me.NoobEric.testaddon.item.IronPotion;
 import me.NoobEric.testaddon.item.MinusSoup;
 import me.NoobEric.testaddon.weapon.BouncySword;
 import me.NoobEric.testaddon.weapon.StickySword;
+import me.NoobEric.testaddon.weapon.TetanusSword;
+import me.NoobEric.testaddon.weapon.ThrowableSword;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
@@ -21,9 +26,18 @@ import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.config.Config;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 
+import javax.annotation.Nonnull;
+
 
 public class TestAddon extends JavaPlugin implements SlimefunAddon {
     public static TestAddon instance;
+    private final ThrowableSwordListener throwableSwordListener = new ThrowableSwordListener();
+
+
+    public static @Nonnull ThrowableSwordListener getThrowableSwordListener() {
+        return instance.throwableSwordListener;
+    }
+
     @Override
     public void onEnable() {
         instance = this;
@@ -40,14 +54,21 @@ public class TestAddon extends JavaPlugin implements SlimefunAddon {
         HackCore.reg();
         StickySword.reg();
         BouncySword.reg();
+        TetanusSword.reg();
+//        ThrowableSword.reg();
         MinusSoup.reg();
+        IronPotion.reg();
 
         getServer().getPluginManager().registerEvents(new MyListener(),this);
+//        getServer().getPluginManager().registerEvents(new ThrowableSwordListener(),this);
 
         Researches.stickySwordResearch.register();
         Researches.bouncySwordResearch.register();
+        Researches.tetanusSwordResearch.register();
+//        Researches.throwableSwordResearch.register();
         Researches.cakeResearch.register();
         Researches.hackCoreResearch.register();
+        Researches.potionResearch.register();
     }
 
     @Override
