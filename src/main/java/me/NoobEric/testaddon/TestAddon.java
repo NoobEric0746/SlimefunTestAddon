@@ -1,6 +1,7 @@
 package me.NoobEric.testaddon;
 
 import io.github.thebusybiscuit.slimefun4.api.researches.Research;
+import io.github.thebusybiscuit.slimefun4.core.services.UpdaterService;
 import io.github.thebusybiscuit.slimefun4.implementation.listeners.GrapplingHookListener;
 import me.NoobEric.testaddon.block.FireCake;
 import me.NoobEric.testaddon.block.SweetCake;
@@ -10,6 +11,7 @@ import me.NoobEric.testaddon.item.GoUpScroll;
 import me.NoobEric.testaddon.item.HackCore;
 import me.NoobEric.testaddon.item.IronPotion;
 import me.NoobEric.testaddon.item.MinusSoup;
+import me.NoobEric.testaddon.other.MyUpdaterService;
 import me.NoobEric.testaddon.weapon.BouncySword;
 import me.NoobEric.testaddon.weapon.StickySword;
 import me.NoobEric.testaddon.weapon.TetanusSword;
@@ -32,6 +34,7 @@ import javax.annotation.Nonnull;
 public class TestAddon extends JavaPlugin implements SlimefunAddon {
     public static TestAddon instance;
     private final ThrowableSwordListener throwableSwordListener = new ThrowableSwordListener();
+//    private final MyUpdaterService updaterService = new MyUpdaterService(this, getDescription().getVersion(), getFile());
 
 
     public static @Nonnull ThrowableSwordListener getThrowableSwordListener() {
@@ -46,6 +49,7 @@ public class TestAddon extends JavaPlugin implements SlimefunAddon {
 
         if (cfg.getBoolean("options.auto-update")) {
             // 你可以在这里添加自动更新功能
+//            updaterService.start();
         }
 
         FireCake.reg();
